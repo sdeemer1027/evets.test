@@ -48,7 +48,7 @@ class PetController extends Controller
     {
         $id= Auth::user()->id;
         $user = User::where('id',$id)->get();
-$pet= Pet::where('id',$petid)->get();
+$pets= Pet::where('id',$petid)->first();
         //   dd( Auth::user()->id,$user);
 
         return view('petedit',[
@@ -56,7 +56,7 @@ $pet= Pet::where('id',$petid)->get();
             'title'     => 'Purchase Numbers',
             'subtitle'  => 'Search and Purchase Numbers Results',
             'users' =>$user,
-            'pet' =>$pet,
+            'pets' =>$pets,
         ]);
     }
     public function update(Request $request)
@@ -92,7 +92,7 @@ $id = $request['id'];
             DB::commit();
 
 
-            dd($request,$petpic);
+      //      dd($request,$petpic);
 
 
         }
@@ -107,14 +107,7 @@ $id = $request['id'];
 
         //      dd($request);
 //try{
-        DB::table('')
-            ->where('id','=',$request['id'])
-            ->update([
-                'firstname' =>$request['firstname'],
-                'lastname' =>$request['lastname'],
-                'updated_at' => now(),
-            ]);
-
+      
 //}
         $id= Auth::user()->id;
         $user = User::where('id',$id)->get();

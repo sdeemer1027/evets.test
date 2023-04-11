@@ -111,7 +111,7 @@
                                             <td>{{$pet->breed}}</td>
                                             <td>{{$pet->type}}</td>
                                             <td>{{$pet->birthdate}}</td>
-                                            <td>edit<a href="{{route('petedit')}}/{{$pet->id}}" ><i class='fas fa-pencil-alt'></i></a></td>
+                                            <td>edit<a href="/mypets/edit/{{$pet->id}}" ><i class='fas fa-pencil-alt'></i></a></td>
                                         </tr>
                                     @endforeach
                                     </tbody>

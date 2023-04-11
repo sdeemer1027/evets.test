@@ -7,7 +7,7 @@
             <div class="col-md-10">
                 @foreach($users as $user)
                 @endforeach
-                    @foreach($pet as $pets)
+                    @foreach($pets as $pet)
                     @endforeach
                 <form action="{{route('peteditpost')}}" method="post" enctype="multipart/form-data">
                     @csrf
@@ -23,8 +23,8 @@
                     <input type="file" name="file" required>
                     <BR>
                     <input type="submit">
-{{$pet}}
-                    {{$pets->id}}
+{{$pets}}
+                    {{--$pet->id--}}
                 </form>
             </div>
         </div>
