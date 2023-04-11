@@ -94,7 +94,31 @@
                             </div>
 
                             <div class="col-md-8">
-                                {{$pets}}
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Breed</th>
+                                        <th scope="col">type </th>
+                                        <th scope="col">Birthday</th>
+                                        <th scope="col">EDIT</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($pets as $pet)
+                                        <tr  scope="row">
+                                            <td>{{$pet->name}}</td>
+                                            <td>{{$pet->breed}}</td>
+                                            <td>{{$pet->type}}</td>
+                                            <td>{{$pet->birthdate}}</td>
+                                            <td>edit<a href="{{route('petedit')}}/{{$pet->id}}" ><i class='fas fa-pencil-alt'></i></a></td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+
+
+                                {{--$pets--}}
 
                             </div>
 

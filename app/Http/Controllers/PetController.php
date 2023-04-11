@@ -44,27 +44,70 @@ class PetController extends Controller
 
     }
 
-    public function edit()
+    public function edit($petid)
     {
         $id= Auth::user()->id;
         $user = User::where('id',$id)->get();
-
+$pet= Pet::where('id',$petid)->get();
         //   dd( Auth::user()->id,$user);
 
-        return view('profileedit',[
+        return view('petedit',[
             'section'   => 'phone-numbers',
             'title'     => 'Purchase Numbers',
             'subtitle'  => 'Search and Purchase Numbers Results',
             'users' =>$user,
+            'pet' =>$pet,
         ]);
     }
     public function update(Request $request)
     {
 
+$id = $request['id'];
+
+        if ($request->hasFile('file')) {
+
+            $request->validate([
+                'image' => 'mimes:jpeg,bmp,png' // Only allow .jpg, .bmp and .png file types.
+            ]);
+
+            // Save the file locally in the storage/public/ folder under a new folder named /product
+            $request->file->store(''.$id.'/pets', 'public');
+
+            $petpic = array([
+                "name" => $request->get('name'),
+                "file_path" => $request->file->hashName()
+            ]);
+
+
+    DB::table('petpictures')
+        ->insert([
+            'user_id' => $id,
+            'pet_id'      => $request['petid'],
+            'name'      => $request['name'],
+            'picture'   => $request->file->hashName(),
+
+            //              'birthdate' => $request['birthday'],
+        ]);
+
+            DB::commit();
+
+
+            dd($request,$petpic);
+
+
+        }
+
+
+
+
+
+
+
+
 
         //      dd($request);
 //try{
-        DB::table('users')
+        DB::table('')
             ->where('id','=',$request['id'])
             ->update([
                 'firstname' =>$request['firstname'],
@@ -127,11 +170,12 @@ $id = $request['id'];
 
             DB::commit();
 
-
+        unset($request);
 
 
         //dd($request);
   //      $id= Auth::user()->id;
+
         $user = User::where('id',$id)->get();
         $pets = Pet::where('user_id',$id)->get();
 
@@ -142,6 +186,7 @@ $id = $request['id'];
             'users' =>$user,
             'pets' => $pets,
         ]);
+
     }
     public function addnew(){
         $id= Auth::user()->id;

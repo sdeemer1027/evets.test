@@ -26,6 +26,8 @@ Route::post('/profile/edit', [App\Http\Controllers\ProfileController::class, 'up
 
 Route::get('/mypets', [App\Http\Controllers\PetController::class, 'index'])->name('mypets');
 Route::get('/mypets/add', [App\Http\Controllers\PetController::class, 'addnew'])->name('mypetsaddnew');
-Route::post('/mypets/add', [App\Http\Controllers\PetController::class, 'store'])->name('mypetsstorenew');
+Route::post('/mypets', [App\Http\Controllers\PetController::class, 'store'])->name('mypetsstorenew');
+Route::get('/mypets/edit/{petid}', [App\Http\Controllers\PetController::class, 'edit'])->name('petedit');
+Route::post('/mypets/edit', [App\Http\Controllers\PetController::class, 'update'])->name('peteditpost');
 
 
