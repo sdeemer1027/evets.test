@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Pet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -28,6 +29,7 @@ class ProfileController extends Controller
     {
         $id= Auth::user()->id;
        $user = User::where('id',$id)->get();
+$pets = Pet::where('user_id',$id)->get();
 
      //   dd( Auth::user()->id,$user);
 
@@ -36,6 +38,7 @@ class ProfileController extends Controller
             'title'     => 'Purchase Numbers',
             'subtitle'  => 'Search and Purchase Numbers Results',
             'users' =>$user,
+            'pets' =>$pets,
         ]);
 //        return view('profile');
     }
