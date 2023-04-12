@@ -47,7 +47,7 @@ class ProfileController extends Controller
     {
         $id= Auth::user()->id;
         $user = User::where('id',$id)->get();
-
+        $pets = Pet::where('user_id',$id)->get();
         //   dd( Auth::user()->id,$user);
 
         return view('profileedit',[
@@ -55,30 +55,39 @@ class ProfileController extends Controller
             'title'     => 'Purchase Numbers',
             'subtitle'  => 'Search and Purchase Numbers Results',
             'users' =>$user,
+            'pets' =>$pets,
         ]);
     }
     public function update(Request $request)
     {
 
 
-  //      dd($request);
+    //    dd($request);
 //try{
     DB::table('users')
         ->where('id','=',$request['id'])
         ->update([
             'firstname' =>$request['firstname'],
             'lastname' =>$request['lastname'],
+            'address'=> $request['address'],
+            'address2'=> $request['address2'],
+            'city'=> $request['city'],
+            'state'=> $request['state'],
+            'zip' =>$request['zip'],
+            'phone'=> $request['phone'],
             'updated_at' => now(),
         ]);
 
 //}
         $id= Auth::user()->id;
         $user = User::where('id',$id)->get();
+        $pets = Pet::where('user_id',$id)->get();
         return view('profile',[
             'section'   => 'phone-numbers',
             'title'     => 'Purchase Numbers',
             'subtitle'  => 'Search and Purchase Numbers Results',
             'users' =>$user,
+            'pets' =>$pets,
         ]);
 
     }
