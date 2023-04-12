@@ -61,6 +61,19 @@
                             </div>
                         </div>
 
+                        <div class="row mb-3">
+                            <label for="zip" class="col-md-4 col-form-label text-md-end">ZipCode</label>
+
+                        <div class="col-md-6">
+                            <input id="zip" type="text" class="form-control @error('zip') is-invalid @enderror" name="zip" value="{{ old('zip') }}" required autocomplete="zip" autofocus>
+
+                            @error('zip')
+                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                            @enderror
+                        </div>
+                        </div>
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

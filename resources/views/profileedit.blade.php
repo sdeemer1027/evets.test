@@ -109,8 +109,48 @@
 
                                        <input type="text" class="form-control form-control-sm" value="{{$user->phone}}" name="phone" placeholder="Phone Number">
 
+                                       <hr>Social Networks
+
+                                       <div class="row mb-12">
+                                   <label for="facebook" class="col-md-4 col-form-label">Facebook</label>
+                                       <input type="text" class="form-control form-control-sm" value="{{$user->facebook}}" name="facebook" placeholder="Your Facebook URL">
+                                   <label for="instagram" class="col-md-4 col-form-label">Instagram</label>
+                                       <input type="text" class="form-control form-control-sm" value="{{$user->instagram}}" name="instagram" placeholder="Your Instagram URL">
+                                   <label for="linkedin" class="col-md-4 col-form-label">Linkedin</label>
+                                       <input type="text" class="form-control form-control-sm" value="{{$user->linkedin}}" name="linkedin" placeholder="Your Linkedin URL">
+                                   <label for="youtube" class="col-md-4 col-form-label">Youtube</label>
+                                       <input type="text" class="form-control form-control-sm" value="{{$user->youtube}}" name="youtube" placeholder="Your YouTube URL">
+                                       </div>
+
+                                           <hr>
+
+
+                                       <div class="row mb-12">
+                                           <div class="col-md-6">
+
+                                           <label for="age" class="col-md-4 col-form-label">Age</label>
+
+                                           <input type="text" class="form-control form-control-sm" value="{{$user->age}}" name="age" placeholder="Your Age">
+                                           </div>
+                                           <div class="col-md-6">
+                                           <label for="gender" class="col-md-4 col-form-label">gender</label>
+
+                                       <select class="form-control form-control-sm" name="gender">
+                                           <option value="">Select Gender / Identity</option>
+                                           <option value="male" @if($user->gender == 'male') selected @endif>Male</option>
+                                           <option value="female"@if($user->gender == 'female') selected @endif>Female</option>
+                                       </select>
+                                           </div>
+                                       </div>
+
+                                       <div class="row mb-3">
+                                           <label for="description" class="col-md-4 col-form-label">Description / Bio </label>
+                                           <div class="col-md-12">
+
+                                       <textarea name="description" class="form-control form-control-sm" > {{$user->description ?? null}}</textarea>
+                                       </div></div>
                                        <BR>
-                                       <input type="submit">
+                                       <input type="submit" class="btn btn-primary">
                                    </form>
                                     @endforeach
 

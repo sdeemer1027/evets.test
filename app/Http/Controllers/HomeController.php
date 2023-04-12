@@ -33,7 +33,9 @@ class HomeController extends Controller
         foreach($user as $me){
             $zip = $me->zip;
         }
-
+        if(!$zip) {
+        $zip ="07840";
+        }
 //dd($zip,$user);
         $apikey= getenv('API_Petfinder_KEY');
         $apisecret= getenv('API_Petfinder_Secret');

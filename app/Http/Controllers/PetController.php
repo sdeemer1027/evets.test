@@ -107,17 +107,21 @@ $id = $request['id'];
 
         //      dd($request);
 //try{
-
+        $petpictures = DB::table('petpictures')->where('user_id',$id)->get();
 //}
         $id= Auth::user()->id;
         $user = User::where('id',$id)->get();
         $pets = Pet::where('user_id',$id)->get();
+
+
+
         return view('profile',[
             'section'   => 'phone-numbers',
             'title'     => 'Purchase Numbers',
             'subtitle'  => 'Search and Purchase Numbers Results',
             'users' =>$user,
             'pets' =>$pets,
+            'petpictures' =>$petpictures,
         ]);
 
     }

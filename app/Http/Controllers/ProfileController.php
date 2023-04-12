@@ -30,7 +30,7 @@ class ProfileController extends Controller
         $id= Auth::user()->id;
        $user = User::where('id',$id)->get();
        $pets = Pet::where('user_id',$id)->get();
-
+$petpictures = DB::table('petpictures')->where('user_id',$id)->get();
      //   dd( Auth::user()->id,$user);
 
         return view('profile',[
@@ -39,6 +39,7 @@ class ProfileController extends Controller
             'subtitle'  => 'Search and Purchase Numbers Results',
             'users' =>$user,
             'pets' =>$pets,
+            'petpictures' => $petpictures,
         ]);
 //        return view('profile');
     }
@@ -61,9 +62,6 @@ class ProfileController extends Controller
     public function update(Request $request)
     {
 
-
-    //    dd($request);
-//try{
     DB::table('users')
         ->where('id','=',$request['id'])
         ->update([
@@ -75,10 +73,19 @@ class ProfileController extends Controller
             'state'=> $request['state'],
             'zip' =>$request['zip'],
             'phone'=> $request['phone'],
+
+            'facebook'=> $request['facebook'],
+            'instagram'=> $request['instagram'],
+            'youtube'=> $request['youtube'],
+            'linkedin'=> $request['linkedin'],
+
+            'age'=> $request['age'],
+            'gender'=> $request['gender'],
+            'description'=> $request['description'],
+
             'updated_at' => now(),
         ]);
 
-//}
         $id= Auth::user()->id;
         $user = User::where('id',$id)->get();
         $pets = Pet::where('user_id',$id)->get();
