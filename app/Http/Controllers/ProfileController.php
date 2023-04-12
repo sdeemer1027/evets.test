@@ -7,6 +7,8 @@ use App\Models\Pet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -30,7 +32,7 @@ class ProfileController extends Controller
         $id= Auth::user()->id;
        $user = User::where('id',$id)->get();
        $pets = Pet::where('user_id',$id)->get();
-$petpictures = DB::table('petpictures')->where('user_id',$id)->get();
+       $petpictures = DB::table('petpictures')->where('user_id',$id)->get();
      //   dd( Auth::user()->id,$user);
 
         return view('profile',[
@@ -44,6 +46,36 @@ $petpictures = DB::table('petpictures')->where('user_id',$id)->get();
 //        return view('profile');
     }
 
+    public function photodelete(Request $request){
+
+        foreach($request['file2'] as $file){
+            File::delete($file);
+            Storage::delete('public/'.$request['id'].'/'.$file);
+        }
+
+
+    //    dd($request , $file);
+
+
+    }
+
+public function editphotos(){
+    $id= Auth::user()->id;
+    $user = User::where('id',$id)->get();
+    $pets = Pet::where('user_id',$id)->get();
+    //   dd( Auth::user()->id,$user);
+
+    $files = Storage::files('public/'.$id);
+    return view('editphotos',[
+        'section'   => 'phone-numbers',
+        'title'     => 'Purchase Numbers',
+        'subtitle'  => 'Search and Purchase Numbers Results',
+        'users' =>$user,
+        'pets' =>$pets,
+        'files' => $files,
+
+    ]);
+}
     public function edit()
     {
         $id= Auth::user()->id;
@@ -51,38 +83,42 @@ $petpictures = DB::table('petpictures')->where('user_id',$id)->get();
         $pets = Pet::where('user_id',$id)->get();
         //   dd( Auth::user()->id,$user);
 
+        $files = Storage::files('public/'.$id);
+
+
+
+      //  dd($files,Storage::allFiles(''));
+
         return view('profileedit',[
             'section'   => 'phone-numbers',
             'title'     => 'Purchase Numbers',
             'subtitle'  => 'Search and Purchase Numbers Results',
             'users' =>$user,
             'pets' =>$pets,
+            'files' => $files,
+
         ]);
     }
     public function update(Request $request)
     {
-
-        if ($request->hasFile('file')) {
-
+        if($request['file2']) {
+            $newpic = $request['file2'];
+        }else
+            if ($request->hasFile('file')) {
             $request->validate([
                 'image' => 'mimes:jpeg,bmp,png' // Only allow .jpg, .bmp and .png file types.
             ]);
-
             // Save the file locally in the storage/public/ folder under a new folder named /product
             $request->file->store('' .$request['id'] . '/', 'public');
-
-            $petpic = array([
-                "name" => $request->get('name'),
-                "file_path" => $request->file->hashName()
-            ]);
-
-        }
-
+            $newpic = $request->file->hashName();
+        }else{
+    $newpic = $request['fileold'];
+}
 
     DB::table('users')
         ->where('id','=',$request['id'])
         ->update([
-            "profilepic" => $request->file->hashName(),
+            "profilepic" => $newpic,
             'firstname' =>$request['firstname'],
             'lastname' =>$request['lastname'],
             'address'=> $request['address'],

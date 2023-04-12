@@ -29,5 +29,6 @@ Route::get('/mypets/add', [App\Http\Controllers\PetController::class, 'addnew'])
 Route::post('/mypets', [App\Http\Controllers\PetController::class, 'store'])->name('mypetsstorenew');
 Route::get('/mypets/edit/{petid}', [App\Http\Controllers\PetController::class, 'edit'])->name('petedit');
 Route::post('/mypets/edit', [App\Http\Controllers\PetController::class, 'update'])->name('peteditpost');
-
+Route::get('/myphotos',[App\Http\Controllers\ProfileController::class, 'editphotos'])->name('editphotos');
+Route::post('/photodelete', [App\Http\Controllers\ProfileController::class, 'photodelete'])->name('photodelete');
 
