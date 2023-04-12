@@ -62,9 +62,27 @@ $petpictures = DB::table('petpictures')->where('user_id',$id)->get();
     public function update(Request $request)
     {
 
+        if ($request->hasFile('file')) {
+
+            $request->validate([
+                'image' => 'mimes:jpeg,bmp,png' // Only allow .jpg, .bmp and .png file types.
+            ]);
+
+            // Save the file locally in the storage/public/ folder under a new folder named /product
+            $request->file->store('' .$request['id'] . '/', 'public');
+
+            $petpic = array([
+                "name" => $request->get('name'),
+                "file_path" => $request->file->hashName()
+            ]);
+
+        }
+
+
     DB::table('users')
         ->where('id','=',$request['id'])
         ->update([
+            "profilepic" => $request->file->hashName(),
             'firstname' =>$request['firstname'],
             'lastname' =>$request['lastname'],
             'address'=> $request['address'],

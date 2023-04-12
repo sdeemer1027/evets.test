@@ -19,7 +19,7 @@
                                 <h5>{{$user->name}}</h5>
                                 <div>
                                     @if($user->profilepic)
-                                        <img src="{{ asset("storage/$user->profilepic") }}" class="img-thumbnail rounded-circle" alt="Steve" width="100"><br/>
+                                        <img src="{{ asset("storage/$user->id/$user->profilepic") }}" class="img-thumbnail rounded-circle" alt="Steve" width="100"><br/>
                                     @else
                                         <img src="/evets-logo.png" class="img-thumbnail rounded-circle" alt="default" width="100">
                                     @endif

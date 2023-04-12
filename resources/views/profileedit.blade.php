@@ -16,7 +16,7 @@
                                     <h5>{{$user->name}}</h5>
                                     <div>
                                         @if($user->profilepic)
-                                            <img src="{{ asset("storage/$user->profilepic") }}" class="img-thumbnail rounded-circle" alt="Steve" width="100"><br/>
+                                            <img src="{{ asset("storage/$user->id/$user->profilepic") }}" class="img-thumbnail rounded-circle" alt="Steve" width="100"><br/>
                                         @else
                                             <img src="/evets-logo.png" class="img-thumbnail rounded-circle" alt="default" width="100">
                                         @endif
@@ -93,9 +93,26 @@
 
                                 <div class="col-md-8">
                                     @foreach($users as $user)
-                                   <form action="{{route('profileeditor')}}" method="post">
+                                   <form action="{{route('profileeditor')}}" method="post"  enctype="multipart/form-data">
                                        @csrf
                                        <input type="hidden" class="form-control form-control-sm"  value="{{$user->id}}" name="id" placeholder="First Name">
+
+                                       <div class="row">
+                                           <div class="col-6">
+                                               @if($user->profilepic)
+                                                   <img src="{{ asset("storage/$user->id/$user->profilepic") }}" class="img-thumbnail rounded-circle" alt="Steve" width="100"><br/>
+                                               @else
+                                                   <img src="/evets-logo.png" class="img-thumbnail rounded-circle" alt="default" width="100">
+                                               @endif
+
+                                           </div>
+                                           <div class="col-6">
+                                               <label for="facebook" class="col-md-4 col-form-label">Change your Profile Picture</label>
+
+                                               <input type="file" name="file" required>
+                                           </div>
+                                       </div>
+
 
                                        <input type="text" class="form-control form-control-sm"  value="{{$user->firstname}}" name="firstname" placeholder="First Name">
                                       <input type="text" class="form-control form-control-sm" value="{{$user->lastname}}" name="lastname" placeholder="Last Name">
