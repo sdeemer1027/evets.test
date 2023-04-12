@@ -28,6 +28,7 @@ Route::get('/mypets', [App\Http\Controllers\PetController::class, 'index'])->nam
 Route::get('/mypets/add', [App\Http\Controllers\PetController::class, 'addnew'])->name('mypetsaddnew');
 Route::post('/mypets', [App\Http\Controllers\PetController::class, 'store'])->name('mypetsstorenew');
 Route::get('/mypets/edit/{petid}', [App\Http\Controllers\PetController::class, 'edit'])->name('petedit');
+Route::delete('/mypets/remove/{petid}', [App\Http\Controllers\PetController::class, 'remove'])->name('remove');
 Route::post('/mypets/edit', [App\Http\Controllers\PetController::class, 'update'])->name('peteditpost');
 Route::get('/myphotos',[App\Http\Controllers\ProfileController::class, 'editphotos'])->name('editphotos');
 Route::post('/photodelete', [App\Http\Controllers\ProfileController::class, 'photodelete'])->name('photodelete');

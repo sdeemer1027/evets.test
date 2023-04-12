@@ -63,8 +63,9 @@
 
 
                             </div>
-                            <a class="btn btn-danger" href="{{route('editphotos')}}" style="float:right"> Edit All Photos</a>
-
+                       {{--}}
+                            <a class="btn btn-danger" href="{{route('editphotos')}}" style="float:right"> Delete Profile Photos</a>
+--}}
                         </div>
 
 

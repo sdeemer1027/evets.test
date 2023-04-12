@@ -7,6 +7,8 @@ use App\Models\Pet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class PetController extends Controller
@@ -43,6 +45,41 @@ class PetController extends Controller
         ]);
 
     }
+    public function remove($petid)
+    {
+        $id= Auth::user()->id;
+        $user = User::where('id',$id)->get();
+        $pets= Pet::where('id',$petid)->first();
+        //   dd( Auth::user()->id,$user);
+ //dd($petid);
+
+        $petpictures=DB::table('petpictures')->where('pet_id',$petid)->get();
+
+
+
+
+
+
+        foreach($petpictures as $file){
+    
+            File::delete($file->picture);
+            Storage::delete('public/'.$id.'/pets/'.$file->picture);
+        }
+
+   //     dd($petpictures,$id,$file,$file->picture);
+
+        DB::table('pets')->where('id',$petid)->delete();
+        DB::table('petpictures')->where('pet_id',$petid)->delete();
+
+        return view('petedit',[
+            'section'   => 'phone-numbers',
+            'title'     => 'Purchase Numbers',
+            'subtitle'  => 'Search and Purchase Numbers Results',
+            'users' =>$user,
+            'pets' =>$pets,
+        ]);
+    }
+
 
     public function edit($petid)
     {
