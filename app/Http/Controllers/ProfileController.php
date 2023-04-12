@@ -29,7 +29,7 @@ class ProfileController extends Controller
     {
         $id= Auth::user()->id;
        $user = User::where('id',$id)->get();
-$pets = Pet::where('user_id',$id)->get();
+       $pets = Pet::where('user_id',$id)->get();
 
      //   dd( Auth::user()->id,$user);
 

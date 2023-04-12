@@ -107,7 +107,7 @@ $id = $request['id'];
 
         //      dd($request);
 //try{
-      
+
 //}
         $id= Auth::user()->id;
         $user = User::where('id',$id)->get();
