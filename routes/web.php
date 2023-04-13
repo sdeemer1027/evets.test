@@ -33,3 +33,9 @@ Route::post('/mypets/edit', [App\Http\Controllers\PetController::class, 'update'
 Route::get('/myphotos',[App\Http\Controllers\ProfileController::class, 'editphotos'])->name('editphotos');
 Route::post('/photodelete', [App\Http\Controllers\ProfileController::class, 'photodelete'])->name('photodelete');
 
+
+Route::get('/findpet', [App\Http\Controllers\FindPetController::class, 'index'])->name('findpet');
+Route::post('/findpet/show', [App\Http\Controllers\FindPetController::class, 'showresults'])->name('findpetshow');
+Route::post('findpet/details', [App\Http\Controllers\FindPetController::class, 'showpet'])->name('showpet');
+
+
