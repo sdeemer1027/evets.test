@@ -74,6 +74,7 @@ $zip = DB::table('zipcodes')->where('status','2')->first();
 
      $zst =      Zipcode::where('zip',$zip1)->update(['status' => '1', 'updated_at' => now()]);
 
+        $org = DB::table('organizations')->get();
 
      //   dd($results,$zip,$zipid,$zippy);
 
@@ -85,6 +86,7 @@ $zip = DB::table('zipcodes')->where('status','2')->first();
             'data' => $results,
             'zip' =>$zip1,
             'zst' =>$zst,
+            'org' => $org,
         ]);
     }
 }

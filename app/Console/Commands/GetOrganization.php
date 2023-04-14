@@ -27,7 +27,7 @@ class GetOrganization extends Command
      */
     public function handle()
     {
-        $zip = DB::table('zipcodes')->where('status','2')->first();
+        $zip = DB::table('zipcodes')->where('status','1')->first();
         $zip1 = $zip->zip;
         $zipid = $zip->id;
 //dd($zip1,$zip,$zip->zip);
@@ -89,7 +89,7 @@ class GetOrganization extends Command
         }
 
 
-        $zst =      Zipcode::where('zip',$zip1)->update(['status' => '1', 'updated_at' => now()]);
+        $zst =      Zipcode::where('zip',$zip1)->update(['status' => '2', 'updated_at' => now()]);
 
 
         //   dd($results,$zip,$zipid,$zippy);
