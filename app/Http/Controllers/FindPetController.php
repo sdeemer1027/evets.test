@@ -67,10 +67,15 @@ class FindPetController extends Controller
         curl_setopt($ch, CURLOPT_HTTPHEADER, ['Authorization: Bearer '.$token.'']);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $results = curl_exec($ch);
+
+
         $results= json_decode($results);
+   //     dd($request,$results);
+
         $results=collect($results);
 
-        //dd($request);
+
+
 $searchfor =array(
     'type'=>$type,
     'zip'=>$zip,

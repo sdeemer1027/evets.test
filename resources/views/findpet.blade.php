@@ -25,9 +25,20 @@ Lets setup and search for a new pet to adopt <BR>
                                         <input type="text" class="form-control form-control-sm"  value="{{$user->zip}}" name="zip" placeholder="ZipCode">
                                         <label for="type" class="col-md-4 col-form-label">Select a Type of Pet:</label>
                                         <select name="type" class="form-control form-control-sm">
+                                         {{--
                                             @foreach($data['types'] as $type)
                                                 <option value="{{$type->name}}">{{$type->name}}</option>
                                             @endforeach
+                                            --}}
+
+                                                <option value="Dog">Dog</option>
+                                                <option value="Cat">Cat</option>
+                                                <option value="Rabbit">Rabbit</option>
+                                                <option value="Horse">Horse</option>
+                                                <option value="Bird">Bird</option>
+                                                <option value="Barnyard">Barnyard</option>
+
+
                                         </select>
 <input type="hidden" name="token" value="{{$token}}">
 
@@ -39,7 +50,7 @@ Lets setup and search for a new pet to adopt <BR>
                                     @foreach($data['types'] as $type)
                                     {{$type->name}} <br>
                                     @endforeach
---}}
+                                    --}}
 {{--$data--}}
 {{--$token--}}
                                 </div>

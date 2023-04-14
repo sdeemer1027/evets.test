@@ -39,3 +39,7 @@ Route::post('/findpet/show', [App\Http\Controllers\FindPetController::class, 'sh
 Route::post('findpet/details', [App\Http\Controllers\FindPetController::class, 'showpet'])->name('showpet');
 
 
+Route::get('/organization', [App\Http\Controllers\ShelterController::class, 'index'])->name('organizations');
+
+
+

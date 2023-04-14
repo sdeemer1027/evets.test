@@ -24,7 +24,7 @@
                                 <div class="col-md-8">
                                     <div class="row">
 
-                                        @foreach($data['animals'] as $newpet)
+                                        @foreach($data['animals'] as $newpet )
                                             <div class="col-6 border">
                                                 {{--
                                                                                 <a href="{{$newpet->url}}" target="_new">
