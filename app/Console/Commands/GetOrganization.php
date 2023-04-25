@@ -27,6 +27,8 @@ class GetOrganization extends Command
      */
     public function handle()
     {
+
+ /*
         $zip = DB::table('zipcodes')->where('status','1')->first();
         $zip1 = $zip->zip;
         $zipid = $zip->id;
@@ -94,16 +96,8 @@ class GetOrganization extends Command
 
         //   dd($results,$zip,$zipid,$zippy);
 print_r($zip1);
-/*
-        return view('organizations',[
-            'section'   => 'phone-numbers',
-            'title'     => 'Purchase Numbers',
-            'subtitle'  => 'Search and Purchase Numbers Results',
-            'data' => $results,
-            'zip' =>$zip1,
-            'zst' =>$zst,
-        ]);
-        */
    // }
+
+        */
     }
 }

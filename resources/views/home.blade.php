@@ -21,13 +21,13 @@
                         <hr>
                         <h5>Adopt a Pet from your Area</h5>
 <div class="row">
-
+{{-- }}
                   @foreach($data['animals'] as $newpet)
                             <div class="col-6 border">
 {{--
                                 <a href="{{$newpet->url}}" target="_new">
---}}
-                          {{--$newpet->id--}}NAME: <strong>{{$newpet->name}}</strong> ({{$newpet->type}})
+-- }}
+                          {{--$newpet->id -- }}NAME: <strong>{{$newpet->name}}</strong> ({{$newpet->type}})
                           <br>
 
                           @if($newpet->primary_photo_cropped->small ?? null)
@@ -38,18 +38,19 @@
                           {{$newpet->description}}
 
                           {{--$newpet->url--}}
-{{--  </a> --}}
-                          {{--}}
+{{--  </a> -- }}
+                          {{-- }}
                     {{$newpet->photos}}
                           @foreach($newpet['photos'] as $photo)
                               {{$photo}}
                           @endforeach
---}}
+-- }}
                           <br><br>
 
                             </div>
                             <br><br>
                         @endforeach
+                        --}}
 
 </div>
 

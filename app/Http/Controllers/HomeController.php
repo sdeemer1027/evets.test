@@ -55,7 +55,7 @@ class HomeController extends Controller
         $results= json_decode($results);
            $results=collect($results);
 
-        //dd($user,$pets);
+//        dd($user,$pets,$results);
 
 
         return view('home',[
